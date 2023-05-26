@@ -28,7 +28,7 @@ const (
 
 // Xes Resource TaskInfo, for the cloud support functionality definition.
 type xrn struct {
-	// The service namespace that identifies the product (for example, faas, cronjob, zhiyinlou, proxy)
+	// The service namespace that identifies the product (for example, faas, cronjob, proxy)
 	Service string `json:"service"`
 	// The region the resource resides in. Note that the xrn for some resources do not require a region, so this
 	// component might be omitted.

@@ -6,7 +6,7 @@ cosmic work we abstracts the process to a configurable, intelligible and immense
 flexible to launch our programming.
 
 For more observation please refer to the following documents.
-[魔方编排Wiki](https://wiki.zhiyinlou.com/pages/viewpage.action?pageId=146264643)
+[魔方编排Wiki](https://wiki.xxx.com/pages/viewpage.action?pageId=146264643)
 
 Incidentally, it would be appreciated if you can donate your code and ideas, any questions
 please contact to huaxr.

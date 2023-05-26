@@ -65,7 +65,7 @@ func (cli *HttpClient) GetUserInfo(token, ticket string) (request.UserInfoResult
 	return result, nil
 }
 
-// https://doc-openapi.zhiyinlou.com/doc#/account/account
+// https://doc-openapi.xxx.com/doc#/account/account
 func (cli *HttpClient) GetMoreUserInfo(ticket, workcode string) (request.UserMoreInfoResult, error) {
 	if len(ticket) == 0 || len(workcode) == 0 {
 		return request.UserMoreInfoResult{}, errors.New("workcode and ticket should not empty")

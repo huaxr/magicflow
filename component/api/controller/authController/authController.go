@@ -31,7 +31,7 @@ var (
 )
 
 func getTicket() string {
-	// https://sso.zhiyinlou.com/portal/login/1541377518
+	// https://sso.xxx.com/portal/login/1541377518
 	appid, appkey := confutil.GetConf().Configuration.Appid, confutil.GetConf().Configuration.Appkey
 	ticket, err := getticket.GetTicket(appid, appkey)
 	if err != nil {
