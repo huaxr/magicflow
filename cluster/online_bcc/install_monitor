@@ -1,0 +1,22 @@
+wget https://dl.grafana.com/oss/release/grafana-7.1.5.linux-amd64.tar.gz
+tar -zxvf grafana-7.1.5.linux-amd64.tar.gz
+nohup ./grafana-server &
+
+
+wget -c https://github.com/prometheus/prometheus/releases/download/v2.28.1/prometheus-2.28.1.linux-amd64.tar.gz
+tar -vxzf prometheus-2.28.1.linux-amd64.tar.gz
+mv prometheus-2.28.1.linux-amd64 /usr/local/prometheus
+vim /usr/lib/systemd/system/prometheus.service
+# 添加如下内容
+[Unit]
+Description=https://prometheus.io
+
+[Service]
+Restart=on-failure
+ExecStart=/usr/local/prometheus/prometheus --config.file=/usr/local/prometheus/prometheus.yml
+
+[Install]
+WantedBy=multi-user.target
+
+systemctl daemon-reload
+systemctl start prometheus.service

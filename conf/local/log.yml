@@ -1,0 +1,6 @@
+level: debug   # info level
+encoder: console
+console: true
+disabletags: true
+infofile: /tmp/info.log
+errorfile: /tmp/error.log

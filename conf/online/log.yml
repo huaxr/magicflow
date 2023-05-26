@@ -1,0 +1,6 @@
+level: debug
+encoder: json
+console: false
+disabletags: false
+infofile: /home/logs/xeslog/info.log
+errorfile: /home/logs/xeslog/error.log

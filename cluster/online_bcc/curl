@@ -1,0 +1,2 @@
+查看 topic
+ curl 10.187.114.192:4171/api/topics/xesFlow_test_app/nil

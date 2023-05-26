@@ -1,0 +1,63 @@
+port:
+  api: 8080
+  service: 8999
+
+dcc:
+  basepath: /magicFlow
+  hosts: 10.90.72.58:2379, 10.90.72.94:2379, 10.90.72.135:2379
+
+queue:
+  nsq:
+    brokers: 10.90.72.135:4150,10.90.72.136:4150,10.90.72.171:4150,10.90.72.172:4150
+    lookups: 10.90.72.58:4161,10.90.72.94:4161
+    admin: 10.90.72.135:4171
+    secret: 4BFE467B-FCBA-4519-BAC8-E9A3C57EDEB6
+  kafka:
+    brokers: 10.90.73.26:9092,10.90.73.54:9092,10.90.73.56:9092
+
+db:
+  mysql:
+    slaves:
+      - other_rw:DA65d357D8dd4666bf4fAbfD6624f139@tcp(10.90.29.171:6306)/xesflow?charset=utf8mb4
+      - other_rw:DA65d357D8dd4666bf4fAbfD6624f139@tcp(10.90.29.171:6306)/xesflow?charset=utf8mb4
+    master: other_rw:DA65d357D8dd4666bf4fAbfD6624f139@tcp(10.90.29.171:6306)/xesflow?charset=utf8mb4
+    maxConn: 100
+    maxIdle: 30
+    logLevel: 1
+    showSql: true
+    slowDuration: 1000
+
+  redis:
+    host: 127.0.0.1:6379
+    password:
+    idletimeout: 240
+    readtimeout: 20
+    maxretry: 3
+    poolsize: 100
+    db: 0
+
+configuration:
+  dispatchThreadCount: 30
+  # healthy check
+  channelReportInterval: 10s
+  brokerHeartbeatInterval: 10s
+
+  # etcd key
+  watchKeyPrefix:  /magicFlow/watch
+  servicesPrefix:  /magicFlow/services
+  electionPrefix:  /magicFlow/election
+  maxNodeIDPrefix: /magicFlow/nodeIDMax
+  nodeIDPrefix:    /magicFlow/nodeID
+  lockPrefix:      /magicFlow/lock
+
+  # sso - tmp
+  appid: 641435698
+  appkey: LZ9HqukKAK5Z5stu
+  superadmin: tianfeng1,xiechao2,huaxinrui
+  env: tmp
+  none:
+
+switch:
+  enableMonitor: true
+  enableHealthyCheck: false
+  enableMasterElect: false

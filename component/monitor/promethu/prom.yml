@@ -1,0 +1,8 @@
+global:
+  scrape_interval:     1s   # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 1s    # # Evaluate rules every 15 seconds. The default is every 1 minute.
+
+scrape_configs:
+  - job_name: "node_exporter"
+    http_sd_configs:
+      - url: http://flow-service.bccv5.vdyoo.com/hosts  # k8s not support cause idc could not ping docker ip.

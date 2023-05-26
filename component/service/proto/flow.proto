@@ -1,0 +1,152 @@
+syntax = "proto3";
+
+option go_package = ".;proto";
+
+package proto;
+
+message TriggerReq {
+  string Srv = 1;
+  uint32  Mod = 2;
+  string AppName = 3;
+  int32 PlaybookId = 4;
+  string AppToken = 5;
+  bool Sync = 6;
+  bytes  Data =7;
+}
+
+message TriggerResponse {
+  string Data = 1;
+  bytes SyncResult = 2;
+}
+
+message WorkerRespReq {
+  string Srv = 1;
+  uint32  Mod = 2;
+  bytes Payload = 3;
+}
+
+message WorkerRespResponse {
+  string Data = 1;
+}
+
+message WorkerExceptionReq {
+  string Srv = 1;
+  uint32  Mod = 2;
+  bytes Payload = 3;
+}
+
+message WorkerExceptionResponse {
+  string Data = 1;
+}
+
+message HookReq {
+  uint64 TraceId = 1;
+  string NodeCode = 2;
+  uint32 SnapshotId = 3;
+  string Srv = 4;
+  uint32 Mod = 5;
+}
+
+message HookResponse {
+  string Data = 1;
+}
+
+service TriggerRpc {
+  rpc Trigger (TriggerReq) returns (TriggerResponse) {}
+  rpc WorkerResponse (WorkerRespReq) returns (WorkerRespResponse) {}
+  rpc WorkerException (WorkerExceptionReq) returns (WorkerExceptionResponse) {}
+  rpc Hook (HookReq) returns (HookResponse) {}
+}
+
+
+
+message GetPlaybookReq {
+  int32 Pbid = 1;
+}
+
+message GetPlaybookResponse {
+  bytes Data = 1;
+}
+
+message SwitchVersionReq  {
+    int32 PlayBookId = 1;
+    int32 SnapShotId = 2;
+}
+
+message SwitchVersionResponse  {
+    int32 PlayBookId = 1;
+}
+
+message  SubmitPlayBookReq {
+  bytes Body = 1;
+}
+
+message  SubmitPlayBookResponse {
+  int32 PlaybookId = 1;
+}
+
+service PlaybookRpc {
+    rpc GetPlaybook (GetPlaybookReq) returns (GetPlaybookResponse) {}
+    rpc SwitchSnapshot (SwitchVersionReq) returns (SwitchVersionResponse) {}
+    rpc SubmitPlayBook (SubmitPlayBookReq) returns (SubmitPlayBookResponse) {}
+}
+
+
+message UpdateAppInternalReq {
+  string Status = 1;
+  int32 AppId  = 2;
+  string Brokers = 3;
+  int32 Eps =4;
+}
+
+message UpdateAppInternalResponse {
+ int32 AppId=1;
+}
+
+service AppRpc {
+  rpc UpdateAppInternal (UpdateAppInternalReq) returns (UpdateAppInternalResponse) {}
+}
+
+
+message PingReq {
+  string message = 1;
+}
+
+message PongResponse {
+  int32 status = 1;
+}
+
+service PingRpc {
+  rpc PingTest (PingReq) returns (PongResponse) {}
+}
+
+
+message GetCacheReq {
+
+}
+
+message GetCacheResponse {
+  bytes  Data =1;
+}
+
+message GetAckReq {
+
+}
+
+message GetAckResponse {
+  bytes  Data =1;
+}
+
+message GetTickerReq {
+
+}
+
+message GetTickerResponse {
+  bytes  Data =7;
+}
+
+service ConsoleRpc {
+  rpc GetCache (GetCacheReq) returns (GetCacheResponse) {}
+  rpc GetAck (GetAckReq) returns (GetAckResponse) {}
+  rpc GetTicker (GetTickerReq) returns (GetTickerResponse) {}
+}

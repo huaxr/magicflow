@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = ".;service";
+
+package service;
+
+message TestReq {
+  string Payload = 2;
+}
+
+message TestResponse {
+  string Data = 1;
+}
+
+service TestRpc {
+  rpc Test (TestReq) returns (TestResponse) {
+  }
+}

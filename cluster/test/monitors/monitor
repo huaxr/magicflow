@@ -1,0 +1,40 @@
+wget https://dl.grafana.com/oss/release/grafana-7.1.5.linux-amd64.tar.gz
+tar -zxvf grafana-7.1.5.linux-amd64.tar.gz
+nohup ./grafana-server &
+
+wget https://repos.influxdata.com/rhel/6Server/x86_64/stable/influxdb-1.2.0.x86_64.rpm
+rpm -ivh influxdb-1.2.0.x86_64.rpm
+service influxdb start
+influx  # enter shell
+CREATE USER "root" WITH PASSWORD 'root' WITH ALL PRIVILEGES
+create database test
+
+
+> use test
+Using database test
+> insert tablehua,indexhua=server value=442221834240
+>
+> select * from tablehua
+name: tablehua
+time                indexhua value
+----                -------- -----
+1631953260207241326 server   4.4222183424e+11
+
+>
+>
+> insert tablehua,indexhua=server value=442221834240,xxxxx
+ERR: {"error":"unable to parse 'tablehua,indexhua=server value=442221834240,xxxxx': invalid field format"}
+
+> insert tablehua,indexhua=server2 value=122
+> insert tablehua,indexhua=server2 valu3e=122
+> insert tablehua,indexhua=server2 valu3e=122
+> select * from tablehua
+name: tablehua
+time                indexhua valu3e value
+----                -------- ------ -----
+1631953260207241326 server          4.4222183424e+11
+1631953334869717630 server2         122
+1631953337640757260 server2  122
+1631953340185154360 server2  122
+
+

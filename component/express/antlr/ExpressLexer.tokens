@@ -1,0 +1,8 @@
+NUMBER=1
+CHAR=2
+EXP=3
+Comma=4
+LBracket=5
+RBracket=6
+EQUALS=7
+WHITESPACE=8

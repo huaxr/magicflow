@@ -1,0 +1,11 @@
+[Unit]
+Description=nsqadmin daemon Service
+After=network.target remote-fs.target nss-lookup.target
+[Service]
+#Type=
+PrivateTmp=yes
+ExecStart=/usr/local/nsq-1.0.0/bin/nsqadmin --lookupd-http-address=127.0.0.1:4161
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

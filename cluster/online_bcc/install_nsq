@@ -1,0 +1,10 @@
+cd /usr/local/
+#wget https://s3.amazonaws.com/bitly-downloads/nsq/nsq-1.2.0.linux-amd64.go1.12.9.tar.gz
+wget 10.187.115.5:8888/nsq-1.2.0.linux-amd64.go1.12.9.tar.gz
+
+groupadd -r dba
+useradd -r -g dba -G root tnuser
+tar -zxvf nsq-1.2.0.linux-amd64.go1.12.9.tar.gz
+ln -s nsq-1.2.0.linux-amd64.go1.12.9 nsq
+mkdir -p /usr/local/nsq/data/
+chown -R tnuser.dba /usr/local/nsq-1.2.0.linux-amd64.go1.12.9 /usr/local/nsq/data/

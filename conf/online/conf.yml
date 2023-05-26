@@ -1,0 +1,61 @@
+port:
+  api: 8080
+  service: 8999
+
+dcc:
+  basepath: /magicFlow
+  hosts: 10.187.115.5:2379,10.187.114.187:2379,10.187.114.192:2379
+
+queue:
+  nsq:
+    brokers: 10.187.114.243:4150,10.187.114.198:4150,10.187.114.236:4150,10.187.114.212:4150,10.187.114.211:4150,10.187.114.201:4150
+    lookups: 10.187.115.5:4161,10.187.114.187:4161,10.187.114.192:4161
+    admin: 10.187.114.192:4171
+    secret: 4BFE467B-FCBA-4519-BAC8-E9A3C57EDEB6
+
+db:
+  mysql:
+    slaves:
+      - magicflow_ro:xx@tcp(xx:4270)/magicflow?charset=utf8mb4
+    master: magicflow_rw:xx@tcp(xx:4270)/magicflow?charset=utf8mb4
+    maxConn: 100
+    maxIdle: 30
+    logLevel: 1
+    showSql: true
+    slowDuration: 1000
+
+  redis:
+    host: 10.20.34.159:7500 10.20.34.160:7500
+    password: bsimqg5qruurgzeciGxoYtdM7c+
+    idletimeout: 240
+    readtimeout: 20
+    maxretry: 3
+    poolsize: 100
+    db: 10
+
+configuration:
+  dispatchThreadCount: 200
+  # healthy check
+  channelReportInterval: 10s
+  # 队列心跳时间
+  brokerHeartbeatInterval: 60s
+
+  # etcd key
+  watchKeyPrefix:  /magicFlow/watch
+  servicesPrefix:  /magicFlow/services
+  electionPrefix:  /magicFlow/election
+  maxNodeIDPrefix: /magicFlow/nodeIDMax
+  nodeIDPrefix:    /magicFlow/nodeID
+  lockPrefix:      /magicFlow/lock
+
+  # sso - tmp
+  appid: 1741435759
+  appkey: X0TqPYM44cJ9Oc7i
+  superadmin: tianfeng1,xiechao2,huaxinrui
+  env: online
+  none:
+
+switch:
+  enableMonitor: true
+  enableHealthyCheck: false
+  enableMasterElect: false

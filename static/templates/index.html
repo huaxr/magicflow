@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <title>{{.title}}</title>
+    <head>
+<body>
+<div float="left">
+    <div width=800 height=800>
+        <div>
+            当前节点:<div id="currentNode"></div>
+            节点描述:<div id="nodeDesc"></div>
+            上下文:<div id="context"></div>
+        </div>
+    </div>
+    <svg width=1000 height=1000><g></g></svg>
+</div>
+
+
+<body>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/d3.v3.min.js"></script>
+<script src="/static/js/dagre-d3.min.js"></script>
+<script>
+    d3.select("body").style("background-color", "#FFEFD5");//整个页面背景色
+    // Create a new directed graph
+    var g = new dagreD3.graphlib.Graph().setGraph({});
+    var states = [];
+    {{ range  $i := .nodes }}
+    states.push({{$i}});
+    {{ end }}
+
+    // Automatically label each of the nodes
+    states.forEach(function(state) { g.setNode(state, { label: state }); });
+    // Set up the edges
+
+    // "stroke: #006400; fill: none;"
+    {{ range $v := .connections }}
+    g.setEdge({{$v.From}}, {{$v.To}}, {
+        label: {{$v.Desc}} ,
+        style: {{ if $v.Exec }} "stroke: #006400; fill: none;" {{else}} "stroke: #D3D3D3; fill: none;" {{end}},
+        arrowheadStyle: {{ if $v.Exec }} "fill: #0fb2cc;stroke: #0fb2cc;" {{else}} "fill: #D3D3D3;stroke: #D3D3D3;" {{end}},
+    });
+    {{ end }}
+
+
+    {{ range $v := .virtual }}
+    g.setEdge({{$v.From}}, {{$v.To}}, {
+        label: {{$v.Desc}} ,
+        style: {{ if $v.Exec }} "stroke: #00F5FF; fill: none;" {{else}} "stroke: #00F5FF; fill: none;" {{end}},
+        arrowheadStyle: {{ if $v.Exec }} "fill: #0fb2cc;stroke: #00F5FF;" {{else}} "fill: #D3D3D3;stroke: #00F5FF;" {{end}},
+    });
+    {{ end }}
+
+    // Set some general styles
+    g.nodes().forEach(function(v) {
+        var node = g.node(v);
+        node.rx = node.ry = 5;
+    });
+
+
+
+    {{ range  $i := .executed }}
+    g.node({{$i}}).style = "fill: #00FA9A";
+    {{ end }}
+
+    {{ range  $i := .success }}
+    g.node({{$i}}).style = "fill: #00FA9A";
+    {{ end }}
+
+    {{ range  $i := .fail }}
+    g.node({{$i}}).style = "fill: red";
+    {{ end }}
+
+    var svg = d3.select("svg"),
+    inner = svg.select("g");
+
+    // Set up zoom support
+    var zoom = d3.behavior.zoom().on("zoom", function() {
+        inner.attr("transform", "translate(" + d3.event.translate + ")" +
+            "scale(" + d3.event.scale + ")");
+    });
+    svg.call(zoom);
+
+    // Create the renderer
+    var render = new dagreD3.render();
+
+    // Run the renderer. This is what draws the final graph.
+    render(inner, g);
+
+    // Center the graph
+    var initialScale = 1;
+    zoom
+        .translate([(svg.attr("width") - g.graph().width * initialScale) / 2, 20])
+        .scale(initialScale)
+        .event(svg);
+    svg.attr('height', g.graph().height * initialScale + 40);
+
+    svg.selectAll("g.node").on('mouseover', function (v) {
+        console.log(v);
+        $.get("/playbook/get_context?trace_id="+getQueryVariable("trace_id")+"&node_name=" + v, function(data){
+            var context = JSON.stringify(data["data"]['Extra']);
+            document.getElementById('context').innerHTML = context;
+            document.getElementById('currentNode').innerHTML = v;
+            document.getElementById('nodeDesc').innerHTML = JSON.stringify(data["data"]['desc']);
+        });
+    });
+
+    function getQueryVariable(variable)
+    {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+    }
+
+</script>
+<html>
+

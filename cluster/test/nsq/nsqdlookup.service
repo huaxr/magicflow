@@ -1,0 +1,13 @@
+[Unit]
+Description=nsqlookup daemon Service
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+#Type=
+PrivateTmp=yes
+ExecStart=/usr/local/nsq-1.0.0/bin/nsqlookupd
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target

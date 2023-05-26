@@ -1,0 +1,34 @@
+version: '2'
+services:
+  nsqadmin:
+    image: nsqio/nsq
+    command: /nsqadmin -lookupd-http-address nsqlookupd:4161
+    depends_on:
+      - nsqlookupd
+    ports:
+      - "4171:4171"
+    networks:
+      - nsq-network1
+  nsqlookupd:
+    image: nsqio/nsq
+    command: /nsqlookupd
+    networks:
+      - nsq-network1
+    hostname: nsqlookupd
+    ports:
+      - "4161:4161"
+      - "4160:4160"
+  nsqd1:
+    image: nsqio/nsq
+    command: /nsqd --lookupd-tcp-address=nsqlookupd:4160 -tcp-address 0.0.0.0:4150 -http-address 0.0.0.0:4151 --auth-http-address=0.0.0.0:8080 -broadcast-address 0.0.0.0
+    depends_on:
+      - nsqlookupd
+    hostname: nsqd1
+    networks:
+      - nsq-network1
+    ports:
+      - "4151:4151"
+      - "4150:4150"
+networks:
+  nsq-network1:
+    driver: bridge
