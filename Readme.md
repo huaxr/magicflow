@@ -37,7 +37,10 @@ for every query details api should with snapshot_id to calculate which table to 
 ![架构图](static/imgs/后端架构.png)
 
 # Monitoring
-![监控大盘](static/imgs/监控.png)
+![监控大盘](static/imgs/1.png)
+![监控大盘](static/imgs/2.png)
+![监控大盘](static/imgs/3.png)
+
 
 # 约束关系
 - 节点设置 依赖 和 弱依赖，依赖是平行边必须等待结果的
