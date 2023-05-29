@@ -14,13 +14,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/Shopify/sarama"
 	"github.com/huaxr/magicflow/pkg/confutil"
 	"github.com/huaxr/magicflow/pkg/toolutil"
-	"github.com/Shopify/sarama"
 )
 
 const (
-	topic = "xesFlow_first_example"
+	topic = "Flow_first_example"
 )
 
 var hosts = strings.Split(confutil.GetConf().Queue.Kafka.Brokers, ",")
@@ -158,7 +158,7 @@ func TestPublish(t *testing.T) {
 	InitKafkaPublisher(context.Background())
 	time.Sleep(1 * time.Second)
 	for {
-		err := kafkaProducer.Publish("xesFlow_first_example", strings.Join([]string{hosts[2], "5"}, "-"), nil)
+		err := kafkaProducer.Publish("Flow_first_example", strings.Join([]string{hosts[2], "5"}, "-"), nil)
 		if err != nil {
 			t.Log(err)
 		}

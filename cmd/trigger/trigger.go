@@ -83,7 +83,7 @@ type Payload struct {
 }
 
 func countonline() {
-	var cli = triggersdk.NewHttpClient("http://flow-service.bccv5.vdyoo.com")
+	var cli = triggersdk.NewHttpClient("http://flow-service.xxx.com")
 
 	for count := 1; count <= 10000; count++ {
 		go func() {

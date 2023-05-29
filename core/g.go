@@ -20,7 +20,7 @@ const (
 )
 
 // unanimous unify for distribute cluster's k8s pods.
-// /api/topics/xesFlow_my_test_worker/nil
+// /api/topics/Flow_my_test_worker/nil
 // update app alive states using the nsq admin query api.
 // this need the master pod starts an loop heartbeat.
 type global struct {

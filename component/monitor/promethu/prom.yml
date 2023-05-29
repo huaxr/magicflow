@@ -5,4 +5,4 @@ global:
 scrape_configs:
   - job_name: "node_exporter"
     http_sd_configs:
-      - url: http://flow-service.bccv5.vdyoo.com/hosts  # k8s not support cause idc could not ping docker ip.
+      - url: http://flow-service.xxx.com/hosts  # k8s not support cause idc could not ping docker ip.

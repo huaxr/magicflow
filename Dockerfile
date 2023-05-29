@@ -1,9 +1,9 @@
-FROM hub.xesv5.com/standard/debian:buster-slim
+FROM hub.xxx.com/standard/debian:buster-slim
 # FROM行由前端生成，请不要改动
-ADD ./config/xesFlow.conf  /etc/supervisord.conf
-ADD  ./git-resource/bin/xesFlow /home/www/xesFlow/bin/xesFlow
-ADD ./git-resource/conf /home/www/xesFlow/conf
-ADD ./git-resource/static /home/www/xesFlow/static
-RUN chmod +x /home/www/xesFlow/bin/xesFlow
-WORKDIR /home/www/xesFlow/
+ADD ./config/Flow.conf  /etc/supervisord.conf
+ADD  ./git-resource/bin/Flow /home/www/Flow/bin/Flow
+ADD ./git-resource/conf /home/www/Flow/conf
+ADD ./git-resource/static /home/www/Flow/static
+RUN chmod +x /home/www/Flow/bin/Flow
+WORKDIR /home/www/Flow/
 CMD ["/usr/local/bin/supervisord", "-c", "/etc/supervisord.conf"]

@@ -18,9 +18,9 @@ queue:
 db:
   mysql:
     slaves:
-      - other_rw:DA65d357D8dd4666bf4fAbfD6624f139@tcp(10.90.29.171:6306)/xesflow?charset=utf8mb4
-      - other_rw:DA65d357D8dd4666bf4fAbfD6624f139@tcp(10.90.29.171:6306)/xesflow?charset=utf8mb4
-    master: other_rw:DA65d357D8dd4666bf4fAbfD6624f139@tcp(10.90.29.171:6306)/xesflow?charset=utf8mb4
+      - other_rw:DA65d357D8dd4666bf4fAbfD6624f139@tcp(10.90.29.171:6306)/Flow?charset=utf8mb4
+      - other_rw:DA65d357D8dd4666bf4fAbfD6624f139@tcp(10.90.29.171:6306)/Flow?charset=utf8mb4
+    master: other_rw:DA65d357D8dd4666bf4fAbfD6624f139@tcp(10.90.29.171:6306)/Flow?charset=utf8mb4
     maxConn: 5
     maxIdle: 2
     logLevel: 0

@@ -911,12 +911,12 @@ func ReloadSnapshot(snapshotId, playbookId int) error {
 
 // GetWorkerTopic
 func GetWorkerTopic(namespace string) string {
-	namespace = fmt.Sprintf("xesFlow_%s", namespace)
+	namespace = fmt.Sprintf("Flow_%s", namespace)
 	return namespace
 }
 
 // GetWorkerNamespace
 func GetWorkerNamespace(topic string) string {
-	x := strings.Split(topic, "xesFlow_")
+	x := strings.Split(topic, "Flow_")
 	return x[1]
 }

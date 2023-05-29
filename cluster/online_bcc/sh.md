@@ -1,5 +1,5 @@
 
-#  flow-service.bccv5.vdyoo.com address should be changed
+#  flow-service.xxx.com address should be changed
 02 10.187.114.196  gitlab 
 03 10.187.114.243  nsq promethues
 04 10.187.114.198  nsq 
@@ -25,19 +25,19 @@ nohup /usr/local/nsq/bin/nsqlookupd -http-address 10.187.115.5:4161 -tcp-address
 # 10.187.114.196
 
 # 10.187.114.243
-nohup /usr/local/nsq/bin/nsqd -tcp-address 10.187.114.243:4150 -http-address 10.187.114.243:4151 -lookupd-tcp-address 10.187.114.192:4160 -lookupd-tcp-address 10.187.114.187:4160 -lookupd-tcp-address 10.187.115.5:4160 --auth-http-address=flow-service.bccv5.vdyoo.com -broadcast-address 10.187.114.243 -msg-timeout=1h >./nsqd.log 2>&1 &
+nohup /usr/local/nsq/bin/nsqd -tcp-address 10.187.114.243:4150 -http-address 10.187.114.243:4151 -lookupd-tcp-address 10.187.114.192:4160 -lookupd-tcp-address 10.187.114.187:4160 -lookupd-tcp-address 10.187.115.5:4160 --auth-http-address=flow-service.xxx.com -broadcast-address 10.187.114.243 -msg-timeout=1h >./nsqd.log 2>&1 &
 
 # 10.187.114.198
-nohup /usr/local/nsq/bin/nsqd -tcp-address 10.187.114.198:4150 -http-address 10.187.114.198:4151 -lookupd-tcp-address 10.187.114.192:4160 -lookupd-tcp-address 10.187.114.187:4160 -lookupd-tcp-address 10.187.115.5:4160 --auth-http-address=flow-service.bccv5.vdyoo.com -broadcast-address 10.187.114.198 -msg-timeout=1h >./nsqd.log 2>&1 &
+nohup /usr/local/nsq/bin/nsqd -tcp-address 10.187.114.198:4150 -http-address 10.187.114.198:4151 -lookupd-tcp-address 10.187.114.192:4160 -lookupd-tcp-address 10.187.114.187:4160 -lookupd-tcp-address 10.187.115.5:4160 --auth-http-address=flow-service.xxx.com -broadcast-address 10.187.114.198 -msg-timeout=1h >./nsqd.log 2>&1 &
 
 # 10.187.114.236
-nohup /usr/local/nsq/bin/nsqd -tcp-address 10.187.114.236:4150 -http-address 10.187.114.236:4151 -lookupd-tcp-address 10.187.114.192:4160 -lookupd-tcp-address 10.187.114.187:4160 -lookupd-tcp-address 10.187.115.5:4160 --auth-http-address=flow-service.bccv5.vdyoo.com -broadcast-address 10.187.114.236 -msg-timeout=1h >./nsqd.log 2>&1 &
+nohup /usr/local/nsq/bin/nsqd -tcp-address 10.187.114.236:4150 -http-address 10.187.114.236:4151 -lookupd-tcp-address 10.187.114.192:4160 -lookupd-tcp-address 10.187.114.187:4160 -lookupd-tcp-address 10.187.115.5:4160 --auth-http-address=flow-service.xxx.com -broadcast-address 10.187.114.236 -msg-timeout=1h >./nsqd.log 2>&1 &
 
 # 10.187.114.212
-nohup /usr/local/nsq/bin/nsqd -tcp-address 10.187.114.212:4150 -http-address 10.187.114.212:4151 -lookupd-tcp-address 10.187.114.192:4160 -lookupd-tcp-address 10.187.114.187:4160 -lookupd-tcp-address 10.187.115.5:4160 --auth-http-address=flow-service.bccv5.vdyoo.com -broadcast-address 10.187.114.212 -msg-timeout=1h >./nsqd.log 2>&1 &
+nohup /usr/local/nsq/bin/nsqd -tcp-address 10.187.114.212:4150 -http-address 10.187.114.212:4151 -lookupd-tcp-address 10.187.114.192:4160 -lookupd-tcp-address 10.187.114.187:4160 -lookupd-tcp-address 10.187.115.5:4160 --auth-http-address=flow-service.xxx.com -broadcast-address 10.187.114.212 -msg-timeout=1h >./nsqd.log 2>&1 &
 
 # 10.187.114.211
-nohup /usr/local/nsq/bin/nsqd -tcp-address 10.187.114.211:4150 -http-address 10.187.114.211:4151 -lookupd-tcp-address 10.187.114.192:4160 -lookupd-tcp-address 10.187.114.187:4160 -lookupd-tcp-address 10.187.115.5:4160 --auth-http-address=flow-service.bccv5.vdyoo.com -broadcast-address 10.187.114.211 -msg-timeout=1h >./nsqd.log 2>&1 &
+nohup /usr/local/nsq/bin/nsqd -tcp-address 10.187.114.211:4150 -http-address 10.187.114.211:4151 -lookupd-tcp-address 10.187.114.192:4160 -lookupd-tcp-address 10.187.114.187:4160 -lookupd-tcp-address 10.187.115.5:4160 --auth-http-address=flow-service.xxx.com -broadcast-address 10.187.114.211 -msg-timeout=1h >./nsqd.log 2>&1 &
 
 # 10.187.114.201
-nohup /usr/local/nsq/bin/nsqd -tcp-address 10.187.114.201:4150 -http-address 10.187.114.201:4151 -lookupd-tcp-address 10.187.114.192:4160 -lookupd-tcp-address 10.187.114.187:4160 -lookupd-tcp-address 10.187.115.5:4160 --auth-http-address=flow-service.bccv5.vdyoo.com -broadcast-address 10.187.114.201 -msg-timeout=1h >./nsqd.log 2>&1 &
+nohup /usr/local/nsq/bin/nsqd -tcp-address 10.187.114.201:4150 -http-address 10.187.114.201:4151 -lookupd-tcp-address 10.187.114.192:4160 -lookupd-tcp-address 10.187.114.187:4160 -lookupd-tcp-address 10.187.115.5:4160 --auth-http-address=flow-service.xxx.com -broadcast-address 10.187.114.201 -msg-timeout=1h >./nsqd.log 2>&1 &

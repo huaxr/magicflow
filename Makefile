@@ -1,10 +1,10 @@
 .PHONY: build
 
-API := cmd/xesFlowApi
-RPC := cmd/xesFlowRpc
+API := cmd/FlowApi
+RPC := cmd/FlowRpc
 
-APISERVICE := xesFlow
-RPCSERVICE := xesFlow
+APISERVICE := Flow
+RPCSERVICE := Flow
 
 PWD := $(shell pwd)
 
@@ -45,7 +45,7 @@ docker_clean:
 	docker container rm $(docker container ls -a -q) && docker network rm $(docker network ls -q)
 db:
 	cd ./component/dao/db
-	xorm-mac reverse mysql 'other_rw:DA65d357D8dd4666bf4fAbfD6624f139@(10.90.29.171:6306)/xesflow?charset=utf8mb4' ./goxorm/
+	xorm-mac reverse mysql 'other_rw:DA65d357D8dd4666bf4fAbfD6624f139@(10.90.29.171:6306)/Flow?charset=utf8mb4' ./goxorm/
 monitor:
 	docker run -d --name promethu -p 9090:9090 -v /Users/huaxinrui/docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 	&& docker run -d -p 3000:3000 --name=grafana grafana/grafana

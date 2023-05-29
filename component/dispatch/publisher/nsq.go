@@ -24,7 +24,6 @@ import (
 
 	"github.com/huaxr/magicflow/pkg/accutil"
 	"github.com/huaxr/magicflow/pkg/confutil"
-	"github.com/nsqio/go-nsq"
 	"github.com/spf13/cast"
 )
 
@@ -72,7 +71,7 @@ func (p *nsqPublisher) Duration() *time.Ticker {
 }
 
 // DELETE http://10.90.72.135:4171/api/nodes/10.90.72.172%3A4151
-// BODY: {"topic": "xesFlow_first_example"}
+// BODY: {"topic": "Flow_first_example"}
 func (p *nsqPublisher) delete(broker string, topic string) {
 
 }
