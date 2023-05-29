@@ -39,6 +39,10 @@ for every query details api should with snapshot_id to calculate which table to 
 # Monitoring
 ![监控大盘](static/imgs/监控.png)
 
+# Display
+![展示1](static/imgs/11.png)
+![展示2](static/imgs/22.png)
+
 # 约束关系
 - 节点设置 依赖 和 弱依赖，依赖是平行边必须等待结果的
 - 弱依赖是条件边，必须满足互斥且唯一true输出， 全false会引起剧本中断
