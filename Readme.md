@@ -43,9 +43,36 @@ for every query details api should with snapshot_id to calculate which table to 
 ![展示1](static/imgs/11.png)
 ![展示2](static/imgs/22.png)
 
-# 约束关系
-- 节点设置 依赖 和 弱依赖，依赖是平行边必须等待结果的
-- 弱依赖是条件边，必须满足互斥且唯一true输出， 全false会引起剧本中断
-- 因为在剧本执行需要保证 end 幂等，（例如剧本嵌套、避免end执行多次），因此必须在多分支剧本中
- 保持依赖关系避免破坏该均衡。 条件边在平行边执行之前会得到唯一一条true表达式， （单choice分支将变得没有意义）
- 
+# 安全性保障
+- 【集群】worker && server 端连接 nsq 集群鉴权完成
+由于nsq的鉴权是通三方托管的，目前鉴权api放在编排server中实现。
+- 【防篡改】
+消息在发送给 slave 时候会对 messge 的 meta 体做 jwt 签名， 并将签名token 做加盐MD5
+客户端发往server时检验token和md5，以防止客户端对消息的篡改。
+目前私钥对硬编码，需要借助秘钥托管进行秘钥保护。
+- 【跨剧本、跨APP鉴权】
+类似于psm等名字服务
+目前没有建立跨APP的鉴权处理，必要时会加上
+- 【风控】
+规避一切潜在的web漏洞
+限流+告警
+
+# 稳定性、高可用性保障
+- 1 每个APP有qps限额，避免消息积压。
+- 2 每个app有消费者健康状态检查，避免无消费情况导致消息积压。
+- 3 使用优先级队列避免瞬时trigger积压
+- 4 对brokers有健康状态检查，并热重启实现
+- 5 对各broker使用负载均衡策略
+- 6 每个app可以分配指定的brokers，避免资源浪费
+- 7 集群状态大盘监控
+- 8 master节点上报一些有用的信息等
+- 9 worker会和server保持心跳，上报硬件信息，server可以控制worker执行一切必要的指令以及操作（可开关）
+- 10 任务全解耦，链路全异步，极大提高吞吐并发，横向拓展性好。
+- 11 必要的存储分库分表实现
+
+# DCC 设计
+- etcd：kv格式
+- key:/flow/playbook/playbookid   value:version_snapshotid
+- eg: /flow/playbook/10   value:version_1
+![dcc](static/imgs/dcc.png)
+
